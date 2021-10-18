@@ -10,4 +10,5 @@ public class Customer {
     private final String name;
     private final String username;
     private final String password;
+    private final City city;
 }

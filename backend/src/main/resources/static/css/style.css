@@ -1,0 +1,96 @@
+*{
+	margin:0;
+	padding:0;
+}
+a{
+	text-decoration: none
+}
+ul{
+	list-style: none
+}
+body{
+	font-family: "微软雅黑"
+}
+.content{
+	width:1200px;
+	margin:0 auto;
+	overflow: hidden
+}
+.logo{
+	width:200px;
+	float:left;
+}
+.title{
+	width:800px;
+	float:right;
+}
+.title ul a li{
+	float:left;
+	margin:0px 1%;
+	width:23%;
+	text-align: center;
+	color:#666;
+	line-height: 202px;
+	font-size:20px;
+}
+.img{
+	width:100%;
+}
+h1{
+	margin:20px 0px;
+	text-align:center;
+	color:#666;
+}
+.text{
+	line-height: 30px;
+	text-align: center;
+	margin:20px 0px;
+}
+footer{
+	background: rgb(59,59,108);
+	width:100%;
+	padding:10px 0px;
+}
+h2{
+	margin:20px 0px;
+	color:#fff;
+}
+h3{
+	margin:20px 0px;
+	color:#333;
+}
+.tel{
+	color:#fff;
+	margin:20px 20px;
+}
+.logos{
+	width:200px;
+	margin:20px auto;
+}
+.contact{
+	padding:20px 20px;
+	border:1px solid #999;
+	width:400px;
+	margin:0 auto;
+}
+.name{
+	margin:5px 0px;
+	color:#666;
+}
+input{
+	height: 38px;
+	width:100%;
+	margin:20px 0px;
+	border:1px solid #999;
+}
+.btn{
+	background: blue;
+	text-align: center;
+	color:#fff
+}
+.tabcontent {
+	display: none;
+	padding: 6px 12px;
+	border: 1px solid #ccc;
+	border-top: none;
+}
