@@ -4,16 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Customer {
-    private String name;
+public class PayRecord {
     private String username;
-    private String password;
-    private City city;
-    private int balance;
-    private String address;
-    private String emailAddress;
-
+    private Date date;
+    private int electricity;
+    private int fee;
 }
