@@ -12,8 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.thymeleaf.util.StringUtils;
 
 import javax.servlet.http.HttpSession;
+import java.util.Locale;
 
-@RestController
+@Controller
 public class IdentityController {
 
     //inject database
@@ -55,18 +56,18 @@ public class IdentityController {
     @PostMapping(value = "/login/signup")
     public String signUp(@RequestParam("username") String username,
                          @RequestParam("password") String password,
-                         @RequestParam("city") City city){
+                         @RequestParam("city") String cityName){
         //initialize a new customer
+
         Customer customer = new Customer();
         customer.setUsername(username);
         customer.setPassword(password);
+        City city = City.valueOf(cityName.toUpperCase());
         customer.setCity(city);
 
         //store the customer to the database
         customerMapper.addUser(customer);
 
-        //redirect to personal center page
-
-        return "";
+        return "pe";
     }
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html  xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
@@ -10,7 +10,6 @@
 	<meta name="author" content="">
 	<title>Home</title>
 	<link rel="stylesheet" href="css/style.css" />
-	<script src="javascript/callToAction.js"></script>
 </head>
 <body >
 	<!DOCTYPE html>
@@ -32,55 +31,55 @@
 			</div>
 			<div class="title">
 				<ul>
-					<a href="index">
+					<a href="index.html">
 						<li>Home</li>
 					</a>
-					<a href="#">
+					<a href="about.html">
 						<li>About</li>
 					</a>
-					<a href="#">
+					<a href="contact.html">
 						<li>Contact</li>
 					</a>
 					<a href="login.html">
 						<li>Login</li>
 					</a>
+					<a href="pe.html">
+					<li><img src="images/1.jpg"></li>
+				</a>
 				</ul>
 			</div>
 		</div>
-
 		<div class="content">
 			<div class="logos">
 				<img src="images/logo.jpg" class="img">
 			</div>
 			<div class="contact">
-				<div class="tab">
-					<button onclick="switchTab('signIn')">Sign In</button>
-					<button onclick="switchTab('signUp')">Sign Up</button>
-				</div>
-				<from id="signIn" class="tabcontent" action="">
+				<h3>Sign In</h3>
+				<form th:action="@{/login/signup}" method="post">
 					<p class="name">User Name</p>
-					<input placeholder="">
+					<input name="username" placeholder="">
 					<p class="name">Password</p>
-					<input placeholder="">
-
-					<input placeholder="" value="Sign In" class="btn">
-				</from>
-
-				<from id="signUp" class="tabcontent" action="">
-					<p class="name">User Name</p>
-					<input placeholder="">
-					<p class="name">Password</p>
-					<input placeholder="">
-					<p class="name">Please reenter your password</p>
-					<input placeholder="">
-					<input placeholder="" value="Sign Up" class="btn">
-				</from>
+					<input name="password" placeholder="">
+					<input name="repeatPassword" placeholder="Confirm your password">
+					<button class="btn">Sign In</button>
+					<strong>City:&nbsp&nbsp&nbsp</strong><select name="city">
+						<option>Chengdu </option>
+						<option> Beijing </option>
+						<option> Chongqing </option>
+						<option> Shanghai</option>
+					</select>
+				</form>
 			</div>
-
-
 		</div>
 		<br>
 		<center><p>Conditions of use privacy notice</p></center>
 	</div>
+	<footer>
+		<div class="contenter">
+			<h2>FAQ</h2>
+			<a href="#" class="tel">Tel: 123-456-7890</a>
+			<a href="#" class="tel">Email: xuyuhao000@163.com</a>
+			</div>
+	</footer>
 </body>
 </html>

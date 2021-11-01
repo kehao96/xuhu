@@ -9,12 +9,19 @@ ul{
 	list-style: none
 }
 body{
-	font-family: "微软雅黑"
+	font-family: "微软雅黑";
+	background: rgb(246,246,246)
 }
 .content{
 	width:1200px;
 	margin:0 auto;
-	overflow: hidden
+	overflow: hidden;
+	
+}
+.contenter{
+	width:1200px;
+	margin:0 auto;
+	overflow: hidden;
 }
 .logo{
 	width:200px;
@@ -27,11 +34,14 @@ body{
 .title ul a li{
 	float:left;
 	margin:0px 1%;
-	width:23%;
+	width:18%;
 	text-align: center;
 	color:#666;
 	line-height: 202px;
 	font-size:20px;
+}
+.title ul a li img{
+	width:20%;
 }
 .img{
 	width:100%;
@@ -71,7 +81,7 @@ h3{
 	padding:20px 20px;
 	border:1px solid #999;
 	width:400px;
-	margin:0 auto;
+	margin:20px auto;
 }
 .name{
 	margin:5px 0px;
@@ -82,15 +92,54 @@ input{
 	width:100%;
 	margin:20px 0px;
 	border:1px solid #999;
+	text-indent:20px;
 }
 .btn{
 	background: blue;
 	text-align: center;
 	color:#fff
 }
-.tabcontent {
-	display: none;
-	padding: 6px 12px;
-	border: 1px solid #ccc;
-	border-top: none;
+.left{
+	width:580px;
+	float:left;
+	overflow: hidden;
+	text-align: center
+}
+.right{
+	width:580px;
+	float:right;
+	text-align: center
+}
+.left h2{
+	color:#333;
+}
+.right p{
+	margin:10px 0px;
+}
+.icon{
+	width:50px;
+	float:left;
+	margin:50px 20px;
+}
+.phone{
+	float:left;
+	width:100px;
+	margin-top:60px;
+}
+.bq{
+	margin-top:60px !important;
+}
+.list li{
+	border-bottom: 1px solid #999;
+	padding:10px 0px;
+}
+.list li strong span{
+	display: inline-block;
+	width:31%;
+	margin:0 1%;
+}
+.list li  span{
+	display: inline-block;
+	width:31%;
+	margin:0 1%;
 }

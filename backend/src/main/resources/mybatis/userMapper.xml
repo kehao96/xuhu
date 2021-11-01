@@ -7,15 +7,15 @@
         select * from customer where username = #{username}
     </select>
     <insert id="addUser" parameterType="Customer">
-        insert into customer (username,password) values (#{username},#{password})
+        insert into customer (username,password,city) values (#{username},#{password},#{city})
     </insert>
 </mapper>
 
-<mapper namespace="com.xuhu.onlinechargingsystem.mapper.RecordMapper">
-<select id="queryAllRecords" resultType="">
-
-</select>
-<insert id="addRecord" parameterType="PayRecord">
-
-</insert>
-</mapper>
+<!--<mapper namespace="com.xuhu.onlinechargingsystem.mapper.RecordMapper">-->
+<!--<select id="queryAllRecords" resultType="PayRecord">-->
+<!--    select * from records-->
+<!--</select>-->
+<!--<insert id="addRecord" parameterType="PayRecord">-->
+<!--    insert into records (username, date, electricity, fee) values (#{username}, #{date}, #{electricity}, #{fee})-->
+<!--</insert>-->
+<!--</mapper>-->

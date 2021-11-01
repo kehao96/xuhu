@@ -10,5 +10,9 @@ public class PageController {
         return "index";
     }
 
+    @GetMapping("/personalCenter")
+    public String personalCenter(){
+        return "pe";
+    }
 
 }
