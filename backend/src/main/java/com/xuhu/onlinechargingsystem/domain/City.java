@@ -1,8 +1,8 @@
 package com.xuhu.onlinechargingsystem.domain;
 
 public enum City {
-    CHENGDU,
+    PARIS,
     CHONGQING,
-    BEIJING,
-    SHANGHAI
+    NEWYORK,
+    LONDON
 }
