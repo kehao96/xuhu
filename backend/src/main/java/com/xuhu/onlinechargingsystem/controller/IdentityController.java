@@ -8,11 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.thymeleaf.util.StringUtils;
 
-import javax.servlet.http.HttpSession;
-import java.util.Locale;
 
 @Controller
 public class IdentityController {
@@ -29,36 +27,48 @@ public class IdentityController {
 
     @PostMapping(value = "/login/signin")
     public String signIn(@RequestParam("username") String username,
-                         @RequestParam("password") String password, HttpSession session){
+                         @RequestParam("password") String password,
+                         RedirectAttributes redirectAttributes){
 
-        if(!StringUtils.isEmpty(username)){
+        if(StringUtils.isEmpty(username)){
 
             //remind to input a username
+            redirectAttributes.addFlashAttribute("msg","Please input your username");
+            return "redirect:/login";
         }
         else{
             Customer customer = customerMapper.queryUserByUsername(username);
             if(customer==null){
                 //remind user not exist
+                redirectAttributes.addFlashAttribute("msg","This user doesn't exist");
+                return "redirect:/login";
             }
             else{
                 String customerPassword = customer.getPassword();
                 if(customerPassword.equals(password)){
                     //redirect to personal center page
+                    return "redirect:/personalCenter";
                 }
                 else{
                     //remind user password is wrong
+                    redirectAttributes.addFlashAttribute("msg","Password is wrong");
+                    return "redirect:/login";
                 }
             }
         }
-        return "index";
     }
 
     @PostMapping(value = "/login/signup")
     public String signUp(@RequestParam("username") String username,
                          @RequestParam("password") String password,
-                         @RequestParam("city") String cityName){
+                         @RequestParam("repeatPassword") String repeatPassword,
+                         @RequestParam("city") String cityName,
+                         RedirectAttributes redirectAttributes){
         //initialize a new customer
-
+        if(!repeatPassword.equals(password)){
+            redirectAttributes.addFlashAttribute("msg","Your password doesn't match");
+            return "redirect:/login";
+        }
         Customer customer = new Customer();
         customer.setUsername(username);
         customer.setPassword(password);
@@ -68,6 +78,6 @@ public class IdentityController {
         //store the customer to the database
         customerMapper.addUser(customer);
 
-        return "pe";
+        return "redirect:/personalCenter";
     }
 }
