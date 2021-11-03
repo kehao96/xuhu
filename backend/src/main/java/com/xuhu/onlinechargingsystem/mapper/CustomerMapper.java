@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository;
 public interface CustomerMapper {
     Customer queryUserByUsername(String username);
     boolean addUser(Customer customer);
+    boolean updateUser(Customer customer);
 }

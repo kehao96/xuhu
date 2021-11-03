@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.thymeleaf.util.StringUtils;
 
+import javax.servlet.http.HttpSession;
+
 
 @Controller
 public class IdentityController {
@@ -28,6 +30,7 @@ public class IdentityController {
     @PostMapping(value = "/login/signin")
     public String signIn(@RequestParam("username") String username,
                          @RequestParam("password") String password,
+                         HttpSession session,
                          RedirectAttributes redirectAttributes){
 
         if(StringUtils.isEmpty(username)){
@@ -47,6 +50,10 @@ public class IdentityController {
                 String customerPassword = customer.getPassword();
                 if(customerPassword.equals(password)){
                     //redirect to personal center page
+                    session.setAttribute("user",customer);
+                    if(customer.getUsername().equals("admin")){
+                        return "redirect:/adminCenter";
+                    }
                     return "redirect:/personalCenter";
                 }
                 else{
@@ -63,6 +70,7 @@ public class IdentityController {
                          @RequestParam("password") String password,
                          @RequestParam("repeatPassword") String repeatPassword,
                          @RequestParam("city") String cityName,
+                         HttpSession session,
                          RedirectAttributes redirectAttributes){
         //initialize a new customer
         if(!repeatPassword.equals(password)){
@@ -77,7 +85,7 @@ public class IdentityController {
 
         //store the customer to the database
         customerMapper.addUser(customer);
-
+        session.setAttribute("user",customer);
         return "redirect:/personalCenter";
     }
 }

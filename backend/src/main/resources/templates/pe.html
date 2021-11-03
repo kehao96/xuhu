@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -40,7 +40,20 @@
 			<div class="icon">
 				<img src="images/1.jpg" class="img">
 			</div>
-			<div class="phone">1111</div>
+			<div>
+				<form>
+					<p >User Name</p>
+					<div th:text="${session.user.username}" ></div>
+					<p >Email</p>
+					<div  th:if="${session.user.emailAddress != null}" th:text="${session.user.emailAddress}"></div>
+					<p>Name</p>
+					<input name="name" th:if="${session.user.name != null}" th:text="${session.user.name}" placeholder="">
+					<p>Address</p>
+					<input name="address" th:if="${session.user.address != null}" th:text="${session.user.address}" placeholder="">
+					</br>
+					<button>Edit</button>
+				</form>
+			</div>
 		</div>
 		<div class="right">
 			<p class="bq"><strong>Balance:&nbsp</strong>1111</p>
@@ -48,7 +61,7 @@
 		<div style="clear:both"></div>
 		<hr>
 		<div class="info">
-			<span>Upcoming payments::叫哦奥军军扩扩扩扩绿绿绿绿111111111111111
+			<span>Upcoming payments::
 			</span></div>
 		<hr>
 		<h2 style="color:#333"> Payment records</h2>
