@@ -14,11 +14,3 @@
     </update>
 </mapper>
 
-<!--<mapper namespace="com.xuhu.onlinechargingsystem.mapper.RecordMapper">-->
-<!--<select id="queryAllRecords" resultType="PayRecord">-->
-<!--    select * from records-->
-<!--</select>-->
-<!--<insert id="addRecord" parameterType="PayRecord">-->
-<!--    insert into records (username, date, electricity, fee) values (#{username}, #{date}, #{electricity}, #{fee})-->
-<!--</insert>-->
-<!--</mapper>-->

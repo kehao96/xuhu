@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xuhu.onlinechargingsystem.mapper.RecordMapper">
+    <select id="queryAllRecordsByUsername" parameterType="String" resultType="PayRecord">
+        select * from record where username = #{username}
+    </select>
+
+    <insert id="addRecord" parameterType="PayRecord">
+        insert into record (username, date, electricity, fee) values (#{username},#{date},#{electricity},#{fee})
+    </insert>
+
+    <update id="updateRecord" parameterType="PayRecord">
+        update record set isPayed=#{isPayed} where id = #{id}
+    </update>
+
+    <select id="queryOneRecord" parameterType="String" resultType="PayRecord">
+        select * from record where username = #{username} and date = #{date}
+    </select>
+</mapper>

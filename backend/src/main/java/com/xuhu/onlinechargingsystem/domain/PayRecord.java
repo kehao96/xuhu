@@ -13,4 +13,5 @@ public class PayRecord {
     private Date date;
     private int electricity;
     private int fee;
+    private boolean isPayed;
 }
