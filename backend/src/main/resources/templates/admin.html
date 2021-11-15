@@ -50,17 +50,20 @@
                 <div class="one">
                     <div class="text">
                         <h4>Target user</h4>
-                        <input type="text" value="" placeholder="Username" /><button>Search</button>
+                        <form th:action="@{/admin/search}" method="post">
+                            <input name="username" type="text" value="" placeholder="Username" /><button type="submit">Search</button>
+                        </form>
+
                     </div>
 
                     <div class="text">
                         <h4>Input record</h4>
                         <!-- <input type="text" value="" placeholder="Record" /><button>INPUT</button> -->
-                        <form>
-                            <input type="text" placeholder="Date" />
-                            <input type="text" placeholder="Electricity" />
-                            <input type="text" placeholder="Outlay" />
-                            <button type="button">Submit</button>
+                        <form th:action="@{/admin/addRecord}" method="post">
+                            <input name="addRecordName" type="text" placeholder="username" />
+                            <input name="date" type="text" placeholder="Date" />
+                            <input name="electricity" type="text" placeholder="Electricity" />
+                            <button type="submit">Submit</button>
                         </form>
                     </div>
                 </div>
@@ -82,25 +85,10 @@
                             <th>ELECTRICITY</th>
                             <th>OUTLAY</th>
                         </tr>
-                        <tr>
-                            <td>2021-12-10</td>
-                            <td>20.C</td>
-                            <td>$200</td>
-                        </tr>
-                        <tr>
-                            <td>2021-12-10</td>
-                            <td>20.C</td>
-                            <td>$200</td>
-                        </tr>
-                        <tr>
-                            <td>2021-12-10</td>
-                            <td>20.C</td>
-                            <td>$200</td>
-                        </tr>
-                        <tr>
-                            <td>2021-12-10</td>
-                            <td>20.C</td>
-                            <td>$200</td>
+                        <tr th:each="record:${session.recordList}">
+                            <td  th:text="${record.getDate()}"></td>
+                            <td th:text="${record.getElectricity()}"></td>
+                            <td th:text="${record.getFee()}"></td>
                         </tr>
                     </table>
                 </div>

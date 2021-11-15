@@ -50,10 +50,11 @@ public class IdentityController {
                 String customerPassword = customer.getPassword();
                 if(customerPassword.equals(password)){
                     //redirect to personal center page
-                    session.setAttribute("user",customer);
+
                     if(customer.getUsername().equals("admin")){
                         return "redirect:/adminCenter";
                     }
+                    session.setAttribute("user",customer);
                     return "redirect:/personalCenter";
                 }
                 else{
