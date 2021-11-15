@@ -1,6 +1,7 @@
 package com.xuhu.onlinechargingsystem.controller;
 
 import com.xuhu.onlinechargingsystem.domain.Customer;
+import com.xuhu.onlinechargingsystem.domain.Month;
 import com.xuhu.onlinechargingsystem.domain.PayRecord;
 import com.xuhu.onlinechargingsystem.mapper.CustomerMapper;
 import com.xuhu.onlinechargingsystem.mapper.RecordMapper;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -30,7 +32,6 @@ public class PaymentController {
     @GetMapping("/personalCenter")
     public String personalCenter(HttpSession session){
         Customer user = (Customer)session.getAttribute("user");
-        System.out.println(user.getUsername());
         List<PayRecord> records = recordMapper.queryAllRecordsByUsername(user.getUsername());
 
         List<PayRecord> paidRecords = new ArrayList<>();
@@ -43,8 +44,7 @@ public class PaymentController {
                 unpaidRecords.add(record);
             }
         }
-//        records = records.subList(0,PAGE_SIZE);
-        //System.out.println(records.get(0).getElectricity());
+
         session.setAttribute("unpaidRecordList",unpaidRecords);
         session.setAttribute("paidRecordList",paidRecords);
         return "pe";
@@ -53,15 +53,31 @@ public class PaymentController {
     public String submitPayment(@RequestParam("date") String date,
                                 HttpSession session){
         Customer customer = (Customer) session.getAttribute("user");
-        System.out.println(date);
-//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//        dateFormat.setLenient(false);
+        Date formattedDate = dateFormat(date);
 
-//        PayRecord record = recordMapper.queryOneRecord(customer.getUsername(),date);
-//        record.setPayed(true);
+        PayRecord record = recordMapper.queryOneRecord(customer.getUsername(),formattedDate);
+        record.setPayed(true);
+        recordMapper.updateRecord(record);
+
         return "redirect:/personalCenter";
     }
 
+    private Date dateFormat(String dateString){
+        String[] dateStrs = dateString.split(" ");
+        int month = Month.valueOf(dateStrs[1]).getValue();
+        String day = dateStrs[2];
+        String year = dateStrs[5];
+        String rawDate = year+"-"+month+"-"+day;
+        System.out.println(rawDate);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = null;
+        try {
+           date =  dateFormat.parse(rawDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
+    }
     @PostMapping(value = "/personalCenter/edit")
     public String editCustomerInformation(@RequestParam("address") String address,
                                           @RequestParam("name") String name,

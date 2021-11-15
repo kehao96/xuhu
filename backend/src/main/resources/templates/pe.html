@@ -1,162 +1,177 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<meta charset="UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-		<meta name='keywords' content='' />
-		<meta name='desription' content='' />
-		<title>user</title>
-		<link rel='stylesheet' href='css/style.css' type='text/css' />
-		<link rel="stylesheet" type="text/css" href="css/swiper.min.css" />
-		<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<meta name='keywords' content='' />
+	<meta name='desription' content='' />
+	<title>user</title>
+	<link rel='stylesheet' href='css/style.css' type='text/css' />
+	<link rel="stylesheet" type="text/css" href="css/swiper.min.css" />
+<!--	<script src="javascript/payment.js" type="text/javascript" charset="utf-8"></script>-->
 
 
-	</head>
-	<body>
-		<!-- head -->
-		<header>
-			<div class="container flex">
-				<div class="logo">
-					<img src="images/logo.png">
+</head>
+<body>
+<!-- head -->
+<header>
+	<div class="container flex">
+		<div class="logo">
+			<img src="images/logo.png">
+		</div>
+		<div class="nav">
+			<ul>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="index.html#about">About</a></li>
+				<li><a href="index.html#contact">Contact</a></li>
+				<li>
+					<a href="login.html">Login</a>
+				</li>
+				<li>
+					<a href="user.html"><img src="images/icon-user.png"></a>
+				</li>
+				<div class="clear">
+
 				</div>
-				<div class="nav">
-					<ul>
-						<li><a href="index.html">Home</a></li>
-						<li><a href="index.html#about">About</a></li>
-						<li><a href="index.html#contact">Contact</a></li>
-						<li>
-							<a href="login.html">Login</a>
-						</li>
-						<li>
-							<a href="user.html"><img src="images/icon-user.png"></a>
-						</li>
-						<div class="clear">
+			</ul>
+		</div>
+	</div>
+</header>
+<!-- body -->
+<div class="content">
+	<div class="section3">
+		<div class="wrap">
+			<div class="left">
+				<ul>
+					<li>Personal Center</li>
+					<li>Payment Records</li>
+				</ul>
 
-						</div>
-					</ul>
+			</div>
+			<div class="right">
+				<div class="one">
+					<div class="img">
+
+						<img src="images/touxiang.jpg" >
+						<form>
+							<label>Username：</label><input type="text" value=""  disabled=""/>
+							<br/>
+							<label>Email：</label><input type="text" value=""/>
+							<br/>
+							<label>Name：</label><input type="text" value="" />
+							<br/>
+							<label>Address：</label><input type="text" value=""/>
+							<button type="button">Edit</button>
+						</form>
+					</div>
+				</div>
+
+				<div class="two">
+					<p>Upcoming payment：</p>
+					<table border="1">
+						<tr>
+							<th>TIME</th>
+							<th>ELECTRICITY</th>
+							<th>OUTLAY</th>
+							<th>Pay</th>
+						</tr>
+						<tr th:each="record:${session.unpaidRecordList}">
+							<form   th:action="@{/personalCenter/pay}" method="post">
+								<td  th:text="${record.getDate()}"></td>
+								<td th:text="${record.getElectricity()}"></td>
+								<td th:text="${record.getFee()}"></td>
+								<input name="date" th:type="hidden" th:value="${record.getDate()}">
+								<td><input type="submit" /></td>
+							</form>
+						</tr>
+					</table>
+					<!-- <table border="1">
+                        <tr>
+                            <th>TIME</th>
+                            <th>ELECTRICITY</th>
+                            <th>OUTLAY</th>
+                        </tr>
+                        <tr th:each="record:${session.unpaidRecordList}">
+                            <form   th:action="@{/personalCenter/pay}" method="post">
+                                <td  th:text="${record.getDate()}"></td>
+                                <td th:text="${record.getElectricity()}"></td>
+                                <td th:text="${record.getFee()}"></td>
+                                <input name="date" type="hidden" th:type="hidden" th:value="${record.getDate()}">
+                                <td><button>submit</button></td>
+                            </form>
+                        </tr>
+                    </table> -->
+				</div>
+
+				<div class="three">
+					<h4>Payment records：</h4>
+					<table border="1">
+						<tr>
+							<th>TIME</th>
+							<th>ELECTRICITY</th>
+							<th>OUTLAY</th>
+						</tr>
+						<tr th:each="record:${session.paidRecordList}">
+							<form   th:action="@{/personalCenter/pay}" method="post">
+								<td  th:text="${record.getDate()}"></td>
+								<td th:text="${record.getElectricity()}"></td>
+								<td th:text="${record.getFee()}"></td>
+							</form>
+						</tr>
+					</table>
 				</div>
 			</div>
-		</header>
-		<!-- body -->
-		<div class="content">
-			<div class="section3">
-				<div class="wrap">
-					<div class="left">
-						<ul>
-							<li>Personal Center</li>
-							<li>Payment Records</li>
-						</ul>
-						
-					</div>
-					<div class="right">
-						<div class="one">
-							<div class="img">
-								<img src="images/touxiang.jpg" >
+			<div class="clear">
 
-								<form>
-									<h5>username</h5>
-									<div th:text="${session.user.username}" ></div>
-									<h5 >Email</h5>
-									<div  th:if="${session.user.emailAddress != null}" th:text="${session.user.emailAddress}"></div>
-									<h5>Name</h5>
-									<input name="name" th:if="${session.user.name != null}" th:text="${session.user.name}" placeholder="name">
-									<h5>Address</h5>
-									<input name="address" th:if="${session.user.address != null}" th:text="${session.user.address}" placeholder="address">
-									</br>
-									<button>Edit</button>
-								</form>
-							</div>
-							<p>Balance：<span>****</span></p>
-						</div>
-						
-						<div class="two">
-							<p>Upcoming payment：</p>
-							<table border="1">
-								<tr>
-									<th>TIME</th>
-									<th>ELECTRICITY</th>
-									<th>OUTLAY</th>
-								</tr>
-								<tr th:each="record:${session.unpaidRecordList}">
-									<form   th:action="@{/personalCenter/pay}" method="post">
-										<td  th:text="${record.getDate()}"></td>
-										<td th:text="${record.getElectricity()}"></td>
-										<td th:text="${record.getFee()}"></td>
-										<input name="date" th:type="hidden" th:value="${record.getDate()}">
-										<td><button>submit</button></td>
-									</form>
-								</tr>
-							</table>
-						</div>
-						
-						<div class="three">
-							<h4>Payment records：</h4>
-							<table border="1">
-								<tr>
-									<th>TIME</th>
-									<th>ELECTRICITY</th>
-									<th>OUTLAY</th>
-								</tr>
-								<tr th:each="record:${session.paidRecordList}">
-									<form   th:action="@{/personalCenter/pay}" method="post">
-										<td  th:text="${record.getDate()}"></td>
-										<td th:text="${record.getElectricity()}"></td>
-										<td th:text="${record.getFee()}"></td>
-									</form>
-								</tr>
-							</table>
-						</div>
-					</div>
-					<div class="clear">
-						
-					</div>
-				</div>
 			</div>
 		</div>
-		<!-- bottom -->
-		<footer>
-            <div class="wrap">
-            	<div class="about lis">
-            		<h2>ABOUT US</h2>
-					<p>
-						Xuhu was created in 2021 in order to provide a more convenient platform for paying electricity bills. Our passion drives us forward. Here we believe we have always provided the most intuitive and simple payment experience.
-					</p>
-            	</div>
-				<div class="contact lis">
-					<h2>CONTACT US</h2>
-					<p>
-						Address: No.288 Tianshun Road, Chengdu, Sichuan Province.
-					</p>
-					<p>
-						Telephone: +86 15923179397
-					</p>
-					<p>
-						Email：xuyuhao000@163.com
-					</p>
-					<p>
-						URL：www.com
-					</p>
-				</div>
-				<div class="faq lis">
-					<h2>FAQ</h2>
-					<p></p>
-					
-				</div>
-				<div class="code lis">
-					<h2>WECHAT QR CODE</h2>
-					<img src="images/qrcode.png" >
-				</div>
-				<div class="clear">
-					
-				</div>
-            </div>
-		</footer>
-		<script type="text/javascript">
-			$(".loginnav li").click(function() {
-				$(this).addClass("active").siblings().removeClass("active");
-				$(".text .con").eq($(this).index()).addClass("active").siblings().removeClass("active");
-			});
-		</script>
-	</body>
+	</div>
+</div>
+<!-- bottom -->
+<footer>
+	<div class="wrap">
+		<div class="about lis">
+			<h2>ABOUT US</h2>
+			<p>
+				Xuhu was created in 2021 in order to provide a more convenient platform for paying electricity bills. Our passion drives us forward. Here we believe we have always provided the most intuitive and simple payment experience.
+			</p>
+		</div>
+		<div class="contact lis">
+			<h2>CONTACT US</h2>
+			<p>
+				Address: No.288 Tianshun Road, Chengdu, Sichuan Province.
+			</p>
+			<p>
+				Telephone: +86 15923179397
+			</p>
+			<p>
+				Email：xuyuhao000@163.com
+			</p>
+			<p>
+				URL：www.com
+			</p>
+		</div>
+		<div class="faq lis">
+			<h2>FAQ</h2>
+			<p></p>
+
+		</div>
+		<div class="code lis">
+			<h2>WECHAT QR CODE</h2>
+			<img src="images/qrcode.png" >
+		</div>
+		<div class="clear">
+
+		</div>
+	</div>
+</footer>
+<script type="text/javascript">
+	$(".loginnav li").click(function() {
+		$(this).addClass("active").siblings().removeClass("active");
+		$(".text .con").eq($(this).index()).addClass("active").siblings().removeClass("active");
+	});
+
+</script>
+</body>
 </html>
