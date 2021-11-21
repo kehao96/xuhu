@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
@@ -17,6 +18,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class AdminController {
@@ -29,6 +31,11 @@ public class AdminController {
     @GetMapping("/adminCenter")
     public String login(){
         return "admin";
+    }
+
+    @GetMapping("/city")
+    public String cityPage(){
+        return "city";
     }
 
     @PostMapping(value = "/admin/search")

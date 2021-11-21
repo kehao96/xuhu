@@ -16,4 +16,5 @@ public interface RecordMapper {
     boolean addRecord(PayRecord record);
     boolean updateRecord(PayRecord record);
     PayRecord queryOneRecord(@Param("username") String username, @Param("date") Date date);
+    List<PayRecord> queryAllRecords();
 }

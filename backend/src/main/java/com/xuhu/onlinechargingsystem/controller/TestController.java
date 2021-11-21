@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Date;
+import java.util.List;
 
 @Controller
 public class TestController {
@@ -35,6 +36,15 @@ public class TestController {
         record.setElectricity(10);
         record.setFee(10);
         recordMapper.addRecord(record);
+        return "index";
+    }
+
+    @RequestMapping("/test/showRecords")
+    public String showRecords()
+    {
+        List<PayRecord> recordList = recordMapper.queryAllRecords();
+
+        System.out.println(recordList.get(0).getDate().getMonth());
         return "index";
     }
 }

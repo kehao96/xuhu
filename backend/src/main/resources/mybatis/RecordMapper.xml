@@ -18,4 +18,8 @@
     <select id="queryOneRecord" resultType="PayRecord">
         select * from record where username = #{username} and date = #{date}
     </select>
+
+    <select id="queryAllRecords" resultType="PayRecord">
+        select * from record
+    </select>
 </mapper>
