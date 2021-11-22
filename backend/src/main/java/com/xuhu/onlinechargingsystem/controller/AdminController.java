@@ -29,7 +29,7 @@ public class AdminController {
     private RecordMapper recordMapper;
 
     @GetMapping("/adminCenter")
-    public String login(){
+    public String login(HttpSession session){
         return "admin";
     }
 
@@ -77,6 +77,7 @@ public class AdminController {
             recordMapper.addRecord(record);
 
             session.setAttribute("username",username);
+            session.setAttribute("email",customer.getEmailAddress());
             List<PayRecord> allRecords = recordMapper.queryAllRecordsByUsername(username);
             session.setAttribute("recordList",allRecords);
         }

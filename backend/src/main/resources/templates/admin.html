@@ -24,7 +24,7 @@
                 <li><a href="/#about">About</a></li>
                 <li><a href="/#contact">Contact</a></li>
                 <li>
-                    <a href="">Sign Out</a>
+                    <a href="/login">Sign Out</a>
                 </li>
                 <li>
                     <a href="user.html"><img src="images/icon-user.png"></a>
@@ -74,7 +74,7 @@
                     </div>
                 </div>
                 <div class="three">
-                    <p>Email:</p>
+                    <p th:text="${session.email}?:'Email: '"></p>
                     <p>Telephone:</p>
                 </div>
                 <div class="four">

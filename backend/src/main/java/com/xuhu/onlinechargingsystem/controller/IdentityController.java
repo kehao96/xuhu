@@ -52,6 +52,8 @@ public class IdentityController {
                     //redirect to personal center page
 
                     if(customer.getUsername().equals("admin")){
+                        session.setAttribute("username",null);
+                        session.setAttribute("email",null);
                         return "redirect:/adminCenter";
                     }
                     session.setAttribute("user",customer);
