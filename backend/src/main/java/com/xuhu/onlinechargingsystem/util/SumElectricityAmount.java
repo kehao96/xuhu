@@ -4,10 +4,8 @@ import com.xuhu.onlinechargingsystem.domain.City;
 import com.xuhu.onlinechargingsystem.domain.PayRecord;
 import com.xuhu.onlinechargingsystem.mapper.CustomerMapper;
 import com.xuhu.onlinechargingsystem.mapper.RecordMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.xml.crypto.Data;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;

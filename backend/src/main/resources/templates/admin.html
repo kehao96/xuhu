@@ -70,7 +70,7 @@
                 <div class="two">
                     <div class="img">
                         <img src="images/touxiang.jpg" >
-                        <h5>Username</h5>
+                        <h5 th:text="${session.username}?:'Username: '"></h5>
                     </div>
                 </div>
                 <div class="three">
