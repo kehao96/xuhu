@@ -31,7 +31,9 @@ public class SumElectricityAmount {
             if(queryCity==city){
                 int electricity = record.getElectricity();
                 Date date = record.getDate();
-                int month = date.getMonth();
+
+                int month = date.getMonth()+1;
+                System.out.println(month);
                 int previousAmount =  map.get(month);
                 map.put(month,previousAmount+electricity);
             }
