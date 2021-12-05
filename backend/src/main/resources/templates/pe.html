@@ -55,14 +55,14 @@
 
 						<img src="images/touxiang.jpg" >
 						<form>
-							<label>Username：</label><input type="text" value=""  disabled=""/>
+							<label>Username：</label>
 							<br/>
-							<label>Email：</label><input type="text" value=""/>
+							<label>Email：</label><input type="text" value="" disabled="" class="edit"/>
 							<br/>
-							<label>Name：</label><input type="text" value="" />
+							<label>Name：</label><input type="text" value="" disabled="" class="edit"/>
 							<br/>
-							<label>Address：</label><input type="text" value=""/>
-							<button type="button">Edit</button>
+							<label>Address：</label><input type="text" value="" disabled="" class="edit"/>
+							<button type="button" class="tijiao">Edit</button>
 						</form>
 					</div>
 				</div>
@@ -171,6 +171,19 @@
 		$(this).addClass("active").siblings().removeClass("active");
 		$(".text .con").eq($(this).index()).addClass("active").siblings().removeClass("active");
 	});
+
+	$(".tijiao").click(function(){
+
+		if($(".one .edit").attr("disabled")){
+			$(".one .edit").addClass("edit1");
+			$(".one .edit").removeAttr("disabled");
+		}else{
+			$(".one .edit").removeClass("edit1");
+			$(".one .edit").attr("disabled",'true');
+		}
+
+
+	})
 
 </script>
 </body>
