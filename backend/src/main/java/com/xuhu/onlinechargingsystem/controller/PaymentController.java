@@ -81,12 +81,15 @@ public class PaymentController {
     @PostMapping(value = "/personalCenter/edit")
     public String editCustomerInformation(@RequestParam("address") String address,
                                           @RequestParam("name") String name,
+                                          @RequestParam("email") String email,
                                           HttpSession session){
-        String username = (String)session.getAttribute("username");
-        Customer customer = customerMapper.queryUserByUsername(username);
+        Customer user = (Customer)session.getAttribute("user");
+        Customer customer = customerMapper.queryUserByUsername(user.getUsername());
         customer.setName(name);
+        customer.setEmailAddress(email);
         customer.setAddress(address);
         customerMapper.updateUser(customer);
+        session.setAttribute("user",customer);
         return "redirect:/personalCenter";
     }
 

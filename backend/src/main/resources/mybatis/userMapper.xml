@@ -10,7 +10,7 @@
         insert into customer (username,password,city) values (#{username},#{password},#{city})
     </insert>
     <update id="updateUser" parameterType="Customer">
-        update user set name=#{name}, address=#{address} where username = #{username}
+        update customer set emailAddress=#{emailAddress}, name=#{name}, address=#{address} where username = #{username}
     </update>
 </mapper>
 
