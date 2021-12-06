@@ -9,8 +9,25 @@ function getJSON(url){
         var status = xhr.status;
         if (status == 200) {
             data = xhr.response
-            console.log(Object.values(data))
-            run(Object.values(data))
+            console.log(data)
+            run(data)
+        } else {
+            console.log("No records found")
+        }
+    };
+
+};
+function getR(url){
+    var xhr = new XMLHttpRequest();
+    xhr.open('get',url,true);
+    xhr.responseType ='json'
+    xhr.send();
+
+    xhr.onload =  function(){
+        var status = xhr.status;
+        if (status == 200) {
+            data = xhr.response
+            alert("R value equals: "+data)
         } else {
             console.log("No records found")
         }
@@ -20,11 +37,16 @@ function getJSON(url){
 
 function startHttpQuery(){
     var cityName = document.getElementById("cityName").value
-    var url= "http://localhost:8080/city";
+    var url= "http://localhost:8080/predictCity";
+    var urlR= "http://localhost:8080/getR"
     if(null != cityName){
         url=url + "/" + cityName;
+        urlR = urlR+ "/" + cityName;
     }
     getJSON(url)
+    getR(urlR)
+
+
 }
 
 function  changeCity(selectObject){
@@ -35,6 +57,8 @@ function  changeCity(selectObject){
 function run(data){
     var myChart = echarts.init(document.getElementById('main'));
 
+    realData = Object.values(data[0])
+    predictData = Object.values(data[1])
     // Specify the configuration items and data for the chart
     var option = {
         title: {
@@ -55,12 +79,12 @@ function run(data){
             {
                 name: 'Real usage',
                 type: 'line',
-                data: data
+                data: realData
             },
             {
                 name: 'Predicted usage',
                 type: 'line',
-                data: [6, 30, 41, 13, 7, 16]
+                data: predictData
             }
         ]
     };
